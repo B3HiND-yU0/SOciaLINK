@@ -9,7 +9,7 @@ Final project for Web Systems and Technologies.
 3. If your MySQL has a password, edit `config/database.php`.
 4. Open **http://localhost/socialink/** in the browser.
 
-Requirements: PHP 8.0+ with `pdo_mysql`, `mbstring` and `fileinfo` (all on by default in XAMPP).
+Requirements: MySQL 8+ or MariaDB 10.2+ (XAMPP default), PHP 8.0+ with `pdo_mysql`, `mbstring` and `fileinfo` (all on by default in XAMPP).
 Internet is needed for the Bootstrap, icon and Google Fonts CDN files.
 
 ### Demo accounts (password for all: `password`)
@@ -22,6 +22,7 @@ Internet is needed for the Bootstrap, icon and Google Fonts CDN files.
 - **Comments (CRUD):** add, edit, delete own comments, shown under each post
 - **Likes:** AJAX like button + counter, one like per user per post
 - **Search:** people by name/username, posts by keyword or #hashtag
+- **Advanced SQL:** views (`v_post_stats`, `v_user_stats`, `v_post_ranking` with window functions), stored procedures (`sp_feed`, `sp_suggested_users` with CTEs, `sp_toggle_like` with a transaction), triggers (validation + automatic `activity_log`), FULLTEXT and composite indexes, CHECK constraints. Example queries are at the bottom of `sql/social_app.sql`.
 - **Bonus:** AJAX likes, follow/unfollow, dark mode, "Load more" feed, image validation, cover photo, hashtags
 
 ## Architecture
@@ -45,6 +46,4 @@ PHP execution blocked in `uploads/` - app/config/sql folders blocked by `.htacce
 - **"Database not reachable"** -> start MySQL, import `sql/social_app.sql`, check `config/database.php`.
 - **Images do not upload** -> make sure `public/uploads/*` folders are writable.
 - **Page looks unstyled** -> you are offline; the CDN files could not load.
-"# SOciaLink" 
-"# SOciaLINK" 
 "# SOciaLINK" 
