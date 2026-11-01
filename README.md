@@ -46,3 +46,5 @@ PHP execution blocked in `uploads/` - app/config/sql folders blocked by `.htacce
 - **Images do not upload** -> make sure `public/uploads/*` folders are writable.
 - **Page looks unstyled** -> you are offline; the CDN files could not load.
 "# SOciaLink" 
+"# SOciaLINK" 
+"# SOciaLINK" 
