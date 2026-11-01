@@ -1,0 +1,596 @@
+/* ==========================================================================
+   SOciaLINK - Responsive Master System (responsive.css)
+   Pixel-perfect mobile, tablet, laptop, and ultrawide screen adaptation.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. GLOBAL RESILIENCE & VIEWPORT BOUNDS
+   -------------------------------------------------------------------------- */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: clip;
+}
+
+body {
+  overflow-x: clip;
+  max-width: 100vw;
+  touch-action: manipulation;
+}
+
+/* Prevent image and media overflows everywhere */
+img, svg, video, canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Universal text wrapping defense against giant strings / URLs */
+p, span, h1, h2, h3, h4, h5, h6, a, li, time {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* --------------------------------------------------------------------------
+   2. MOBILE FORM INPUTS (No iOS Safari Viewport Auto-Zoom)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  /* iOS Safari forces unwanted zoom on font-size < 16px */
+  input[type="text"],
+  input[type="search"],
+  input[type="password"],
+  input[type="email"],
+  textarea,
+  select,
+  .form-control {
+    font-size: 16px !important;
+    min-height: 44px;
+  }
+
+  .form-control-sm {
+    min-height: 38px;
+    font-size: 15px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. RESPONSIVE TOPBAR
+   -------------------------------------------------------------------------- */
+@media (max-width: 639px) {
+  :root {
+    --nav-h: 58px;
+  }
+
+  .topbar-inner {
+    padding: 0 12px;
+    gap: 8px;
+  }
+
+  .brand {
+    gap: 8px;
+  }
+
+  .brand-mark {
+    width: 34px;
+    height: 34px;
+    font-size: 20px;
+    border-radius: 10px;
+  }
+
+  .brand-word {
+    font-size: clamp(18px, 4.6vw, 21px);
+  }
+
+  .topbar-actions {
+    gap: 6px;
+  }
+
+  .icon-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 17px;
+  }
+
+  .sl-menu {
+    min-width: 200px;
+    max-width: calc(100vw - 24px);
+    right: 8px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. RESPONSIVE SHELL & GRIDS
+   -------------------------------------------------------------------------- */
+.shell {
+  width: 100%;
+  padding-left: clamp(10px, 3vw, 20px);
+  padding-right: clamp(10px, 3vw, 20px);
+}
+
+.page {
+  width: 100%;
+  padding-left: clamp(10px, 3vw, 20px);
+  padding-right: clamp(10px, 3vw, 20px);
+}
+
+/* Mobile & Tablet (< 992px) bottom padding accounting for bottom nav */
+@media (max-width: 991px) {
+  .shell,
+  .page {
+    padding-bottom: calc(88px + env(safe-area-inset-bottom, 16px)) !important;
+  }
+}
+
+/* Small Tablet / Phablet Feed Centering (640px - 991px) */
+@media (min-width: 640px) and (max-width: 991px) {
+  .feed {
+    max-width: 640px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .page {
+    max-width: 680px;
+  }
+}
+
+/* Desktop 2-column (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .shell {
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 18px;
+    padding-top: 20px;
+    padding-bottom: 40px !important;
+  }
+
+  .side-sticky {
+    top: calc(var(--nav-h) + 16px);
+  }
+}
+
+/* Large Desktop (>= 1200px) */
+@media (min-width: 1200px) {
+  .shell {
+    grid-template-columns: 260px minmax(0, 620px) 280px;
+    gap: 24px;
+    padding-top: 24px;
+    padding-bottom: 50px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. RESPONSIVE COMPOSER (Writing Posts)
+   -------------------------------------------------------------------------- */
+@media (max-width: 575px) {
+  .composer {
+    padding: 14px 12px;
+    margin-bottom: 14px;
+    border-radius: 18px;
+  }
+
+  .composer-row {
+    gap: 10px;
+  }
+
+  .composer-row .avatar {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 14px !important;
+  }
+
+  .composer textarea {
+    font-size: 16px;
+    min-height: 48px;
+    padding: 6px 0;
+  }
+
+  .composer-preview {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .composer-preview img {
+    max-height: 220px;
+  }
+
+  .composer-foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding-top: 10px;
+    margin-top: 8px;
+  }
+
+  .composer-foot .file-btn {
+    padding: 6px 12px;
+    font-size: 13.5px;
+  }
+
+  .composer-foot .char-count {
+    font-size: 12px;
+    margin-left: auto;
+  }
+
+  .composer-foot button[type="submit"] {
+    padding: 7px 18px;
+    font-size: 14px;
+  }
+
+  .composer-hint {
+    order: 4;
+    width: 100%;
+    margin-top: 2px;
+    font-size: 12.5px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. RESPONSIVE POST CARDS & THREADED COMMENTS
+   -------------------------------------------------------------------------- */
+@media (max-width: 575px) {
+  .post-card {
+    padding: 14px 12px 10px;
+    border-radius: 16px;
+    margin-bottom: 12px;
+  }
+
+  .post-head {
+    gap: 10px;
+  }
+
+  .post-avatar .avatar {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 15px !important;
+  }
+
+  .post-name {
+    font-size: 15.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100vw - 150px);
+  }
+
+  .post-meta {
+    font-size: 12.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100vw - 150px);
+  }
+
+  .post-body {
+    font-size: 15.5px;
+    line-height: 1.55;
+    margin: 10px 0 4px;
+  }
+
+  .post-image {
+    margin: 8px 0 4px;
+    border-radius: 12px;
+  }
+
+  .post-image img {
+    max-height: 360px;
+  }
+
+  .post-actions {
+    margin: 6px -4px 0;
+    gap: 4px;
+  }
+
+  .act-btn {
+    padding: 7px 11px;
+    font-size: 13.5px;
+    min-height: 38px;
+  }
+
+  /* Comments on Small Mobile */
+  .comments-wrap {
+    margin-top: 6px;
+    padding-top: 10px;
+  }
+
+  .comments::before {
+    left: 13px;
+  }
+
+  .comment {
+    gap: 8px;
+  }
+
+  .comment .avatar {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 11px !important;
+  }
+
+  .comment-bubble {
+    padding: 7px 11px;
+    border-radius: 4px 14px 14px 14px;
+    max-width: calc(100vw - 72px);
+  }
+
+  .comment-name {
+    font-size: 13px;
+  }
+
+  .comment-text {
+    font-size: 14px;
+  }
+
+  .comment-meta {
+    font-size: 11.5px;
+    gap: 8px;
+    padding: 2px 2px 0;
+  }
+
+  .comment-new .form-control {
+    padding: 8px 14px;
+    font-size: 15px !important;
+    min-height: 40px;
+  }
+
+  .comment-new .send-btn {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+  }
+}
+
+/* Extra small devices (iPhone SE, 320px - 360px) */
+@media (max-width: 360px) {
+  .post-card {
+    padding: 12px 10px 8px;
+  }
+
+  .post-body {
+    font-size: 14.5px;
+  }
+
+  .act-btn {
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+
+  .act-btn i {
+    font-size: 14px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. RESPONSIVE PROFILE PAGE
+   -------------------------------------------------------------------------- */
+@media (max-width: 575px) {
+  .profile-card {
+    border-radius: 18px;
+  }
+
+  .profile-cover {
+    height: clamp(120px, 32vw, 155px);
+  }
+
+  .profile-body {
+    padding: 0 14px 16px;
+  }
+
+  .profile-top {
+    margin-top: -42px;
+    align-items: flex-end;
+  }
+
+  .profile-top .avatar {
+    width: 82px !important;
+    height: 82px !important;
+    font-size: 30px !important;
+    box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--signal) !important;
+  }
+
+  .profile-cta .btn {
+    padding: 6px 14px;
+    font-size: 13.5px;
+  }
+
+  .profile-name {
+    font-size: 22px;
+    margin: 10px 0 0;
+  }
+
+  .profile-handle {
+    font-size: 14px;
+  }
+
+  .profile-bio {
+    font-size: 14.5px;
+    margin-top: 8px;
+  }
+
+  .profile-meta {
+    font-size: 13px;
+    margin-top: 8px;
+  }
+
+  /* Compact 3-column stats grid */
+  .profile-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    gap: 6px;
+    margin-top: 12px;
+    padding-top: 10px;
+  }
+
+  .profile-stats div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-stats b {
+    font-size: 18px;
+  }
+
+  /* Edit Profile Cover & Avatar */
+  .edit-cover {
+    height: 130px;
+  }
+
+  .edit-avatar-row {
+    padding: 0 12px 14px;
+    gap: 12px;
+  }
+
+  .edit-avatar-row .avatar {
+    width: 72px !important;
+    height: 72px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8. RESPONSIVE SEARCH & TABS
+   -------------------------------------------------------------------------- */
+@media (max-width: 575px) {
+  .search-hero {
+    padding: 6px 6px 6px 14px;
+    border-radius: 16px;
+    gap: 6px;
+  }
+
+  .search-hero .form-control {
+    font-size: 15px !important;
+    padding: 6px 0;
+  }
+
+  .search-hero .btn {
+    padding: 7px 14px;
+    font-size: 13.5px;
+  }
+
+  .tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 12px 0 6px;
+  }
+
+  .tabs a {
+    text-align: center;
+    padding: 8px 12px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .person-result {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .person-result .avatar {
+    width: 44px !important;
+    height: 44px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9. RESPONSIVE AUTHENTICATION (Login & Register)
+   -------------------------------------------------------------------------- */
+@media (max-width: 991px) {
+  .auth-page {
+    grid-template-columns: 1fr;
+    min-height: 100vh;
+  }
+
+  .auth-stage {
+    padding: 28px 20px 24px;
+    gap: 14px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .stage-copy h1 {
+    font-size: clamp(26px, 6vw, 38px);
+    margin-bottom: 8px;
+  }
+
+  .stage-copy p {
+    font-size: 15px;
+    max-width: 36ch;
+    margin: 0 auto;
+  }
+
+  .auth-panel {
+    padding: 24px 14px 44px;
+  }
+
+  .auth-card {
+    padding: 24px 20px;
+    border-radius: 20px;
+    max-width: 440px;
+  }
+
+  .auth-card h2 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 420px) {
+  .auth-card {
+    padding: 20px 16px;
+  }
+
+  .auth-stage {
+    padding: 22px 14px 18px;
+  }
+
+  .demo-hint {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10. MOBILE BOTTOM NAVIGATION & MODAL DIALOGS
+   -------------------------------------------------------------------------- */
+.bottom-nav {
+  /* Safe area inset support on iPhones with home indicator */
+  padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+}
+
+@media (max-width: 575px) {
+  .modal-dialog {
+    margin: 12px;
+    max-width: calc(100vw - 24px);
+  }
+
+  .sl-modal {
+    border-radius: 20px;
+  }
+
+  .sl-modal .modal-header,
+  .sl-modal .modal-footer {
+    padding: 12px 16px;
+  }
+
+  .sl-modal .modal-body {
+    padding: 14px 16px;
+  }
+
+  .toast-stack {
+    top: auto;
+    bottom: calc(76px + env(safe-area-inset-bottom, 16px));
+    right: 12px;
+    left: 12px;
+    justify-items: center;
+  }
+
+  .sl-toast {
+    max-width: 100%;
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+}
